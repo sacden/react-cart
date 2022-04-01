@@ -1,9 +1,12 @@
 import React from "react";
 
 export default function Login(props: any) {
+  const { loggedIn, setLoggedIn } = props;
+
   const handleClickButton = () => {
-    props.setLoggedIn(true);
+    setLoggedIn(!loggedIn);
   };
+
   return (
     <>
       <div>Please login</div>

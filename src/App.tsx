@@ -7,7 +7,7 @@ import Login from "./screens/login/Login";
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
 
-  return <div className="App">{loggedIn ? <Cart setLoggedIn={setLoggedIn} /> : <Login setLoggedIn={setLoggedIn} />}</div>;
+  return <div className="App">{loggedIn ? <Cart setLoggedIn={setLoggedIn} loggedIn={loggedIn} /> : <Login setLoggedIn={setLoggedIn} loggedIn={loggedIn} />}</div>;
 }
 
 export default App;
