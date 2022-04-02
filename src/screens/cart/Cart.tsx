@@ -1,37 +1,65 @@
 import React, { useState } from "react";
 import Logout from "./Logout";
+import Products from "./Products";
 
 export default function Cart(props: any) {
   const { loggedIn, setLoggedIn } = props;
-  const [count, setCount] = useState(0);
 
-  const increase = () => {
-    setCount(count + 1);
+  const allProducts = [
+    {
+      id: 1,
+      name: "Burger",
+      img: "https://cdn.pixabay.com/photo/2021/01/24/18/10/hamburger-5945987_1280.png",
+      text: "Some quick example text to build on the card title and make up the bulk of the cards content",
+      value: 0,
+    },
+    {
+      id: 2,
+      name: "Cheese",
+      img: "https://cdn.pixabay.com/photo/2020/03/19/07/15/cheese-4946581_1280.png",
+      text: "Some quick example text to build on the card title and make up the bulk of the cards content",
+      value: 0,
+    },
+    {
+      id: 3,
+      name: "Milk",
+      img: "https://cdn.pixabay.com/photo/2019/06/06/06/31/milk-4255262_1280.png",
+      text: "Some quick example text to build on the card title and make up the bulk of the cards content",
+      value: 0,
+    },
+    {
+      id: 4,
+      name: "Icecream",
+      img: "https://cdn.pixabay.com/photo/2020/05/17/12/16/ice-cream-5181345_1280.png",
+      text: "Some quick example text to build on the card title and make up the bulk of the cards content",
+      value: 0,
+    },
+  ];
+
+  const [count, setCount] = useState(allProducts);
+
+  const increase = (identificator: number) => {
+    const newCount = [...count];
+    const elementIndex = newCount.findIndex((c) => c.id === identificator);
+    newCount[elementIndex].value++;
+    setCount(newCount);
   };
 
-  const decrease = () => {
-    count > 0 && setCount(count - 1);
+  const decrease = (identificator: number) => {
+    const newCount = [...count];
+    const elementIndex = newCount.findIndex((c) => c.id === identificator);
+    if (newCount[elementIndex].value > 0) {
+      newCount[elementIndex].value--;
+      setCount(newCount);
+    }
   };
 
   return (
     <>
-      <div className="col-sm-3">
-        <div className="card">
-          <img src="https://cdn.pixabay.com/photo/2021/01/24/18/10/hamburger-5945987_1280.png" className="card-img-top" alt="..." />
-          <div className="card-body">
-            <h5 className="card-title">Burger</h5>
-            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <a href="#" className="btn btn-success" onClick={increase}>
-                +
-              </a>
-              <h3> {count}</h3>
-              <a href="#" className={count > 0 ? "btn btn-danger" : "btn btn-secondary"} onClick={decrease}>
-                -
-              </a>
-            </div>
-          </div>
-        </div>
+      <div style={{ display: "flex" }}>
+        {count.map((product, index) => (
+          <Products count={[...count]} increase={increase} decrease={decrease} product={product} key={index} />
+        ))}
       </div>
       <Logout setLoggedIn={setLoggedIn} loggedIn={loggedIn} />
     </>
