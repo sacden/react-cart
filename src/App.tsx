@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import "./App.css";
-import Cart from "./screens/cart/Cart";
-import Login from "./screens/login/Login";
+import Cart from "./components/cart/Cart";
+import Login from "./components/auth/Login";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState<boolean>(false);
 
   return <div className="App">{loggedIn ? <Cart setLoggedIn={setLoggedIn} loggedIn={loggedIn} /> : <Login setLoggedIn={setLoggedIn} loggedIn={loggedIn} />}</div>;
 }

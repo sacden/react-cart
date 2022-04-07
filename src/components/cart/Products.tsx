@@ -1,7 +1,8 @@
 import React from "react";
+import { IProducts } from "../../types/types";
 
-export default function Products(props: any) {
-  const { count, increase, decrease, product } = props;
+export default function Products(props: IProducts) {
+  const { increase, decrease, product } = props;
 
   return (
     <>

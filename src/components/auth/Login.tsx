@@ -1,9 +1,10 @@
 import React from "react";
+import { IAuth } from "../../types/types";
 
-export default function Login(props: any) {
+export default function Login(props: IAuth) {
   const { loggedIn, setLoggedIn } = props;
 
-  const handleClickButton = () => {
+  const handleClickButton = (): void => {
     setLoggedIn(!loggedIn);
   };
 

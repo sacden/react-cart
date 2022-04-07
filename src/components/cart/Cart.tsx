@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import Logout from "./Logout";
+import { IAuth, IProduct } from "../../types/types";
+import Logout from "../auth/Logout";
 import Products from "./Products";
 
-export default function Cart(props: any) {
+export default function Cart(props: IAuth) {
   const { loggedIn, setLoggedIn } = props;
 
-  const allProducts = [
+  const allProducts: IProduct[] = [
     {
       id: 1,
       name: "Burger",
@@ -57,8 +58,8 @@ export default function Cart(props: any) {
   return (
     <>
       <div style={{ display: "flex" }}>
-        {count.map((product, index) => (
-          <Products count={[...count]} increase={increase} decrease={decrease} product={product} key={index} />
+        {count.map((product: IProduct, index: number) => (
+          <Products increase={increase} decrease={decrease} product={product} key={index} />
         ))}
       </div>
       <Logout setLoggedIn={setLoggedIn} loggedIn={loggedIn} />
